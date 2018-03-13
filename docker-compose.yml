@@ -1,0 +1,24 @@
+version: "2"
+services:
+  db:
+    image: postgres
+    container_name: db
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: andrew
+      POSTGRES_PASSWORD: 123
+    volumes:
+      - ./data:/var/lib/postgresql/data
+  api:
+    container_name: api
+    build: ./api/
+    links:
+      - db
+    environment:
+      DATABASE_URL: postgres://andrew:123@db:5432/postgres
+    command: yarn start
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./api:/api

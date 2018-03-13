@@ -1,7 +1,5 @@
 FROM node:8
-WORKDIR /app
-COPY package.json /app
+RUN mkdir /api
+COPY . /api
+WORKDIR /api
 RUN yarn install
-COPY . /app
-CMD node index.js
-EXPOSE 3000
