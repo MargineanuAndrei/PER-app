@@ -1,14 +1,8 @@
 const express = require('express');
 const router = express.Router();
 
-const knex = require('../db/knex');
+const MovieController = require('../controllers/movieController');
 
-router.get('/', (req, res) => {
-  knex('movies')
-    .select()
-    .then(movies => {
-      res.send(movies);
-    });
-});
+router.get('/', MovieController.getAllMovies);
 
 module.exports = router;
