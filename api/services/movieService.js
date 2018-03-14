@@ -49,10 +49,32 @@ class MovieService {
       return Either.Left();
     }
   }
+
+  static async createMovie(data) {
+    try {
+      const validationErr = await MovieService.validateMovie(data);
+      if (validationErr.isRight()) {
+        await knex('movies').insert(data)
+        return Either.Right();
+      }
+      return Either.Left(validationErr.value);
+    } catch (error) {
+      return Either.Left();
+    }
+  }
+
+  static async validateMovie(data) {
+    try {
+      return Either.Right();
+    } catch (error) {
+      return Either.Left(MovieService.ERRORS.INVALID_MOVIE);
+    }
+  }
 }
 
 MovieService.ERRORS = {
-  INVALID_ID: 'INVALID_ID'
+  INVALID_ID: 'INVALID_ID',
+  INVALID_MOVIE: 'INVALID_MOVIE'
 };
 
 

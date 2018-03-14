@@ -4,7 +4,7 @@ exports.up = function(knex, Promise) {
     table.string('title').unique().notNullable();
     table.string('description').notNullable();
     table.integer('rating');
-    table.datetime('released').notNullable();
+    table.timestamp('released').defaultTo(knex.fn.now());
   });
 };
 

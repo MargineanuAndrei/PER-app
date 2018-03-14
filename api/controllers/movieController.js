@@ -44,6 +44,22 @@ class MovieController {
       result => okResponse(res, undefined, MovieResponses.MOVIE_DELLETED()),
     );
   }
+
+  static async createMovie(req, res) {
+    return (await MovieService.createMovie(req.body)).cata(
+      error => errorResponse(res, R.cond([
+        [
+          R.equals(MovieService.ERRORS.INVALID_MOVIE),
+          R.always(MovieResponses.INVALID_MOVIE()),
+        ],
+        [
+          R.T,
+          R.always(MovieResponses.MOVIE_ERROR()),
+        ]
+      ])(error)),
+      result => okResponse(res, undefined, MovieResponses.MOVIE_CREATED()),
+    );
+  }
 }
 
 module.exports = MovieController;
