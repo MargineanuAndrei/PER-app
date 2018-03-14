@@ -1,6 +1,12 @@
 module.exports = {
   development: {
-    client: 'pg',
-    connection: 'postgres://andrew:password@db:5432/movies'
+    client: 'postgresql',
+    debug: true,
+    connection: {
+      host:     'localhost',
+      database: 'movies',
+      user:     'postgres',
+      password: 'postgres'
+    }
   }
 };

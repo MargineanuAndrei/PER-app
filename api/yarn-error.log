@@ -21,6 +21,7 @@ npm manifest:
     "license": "MIT",
     "scripts": {
       "start": "nodemon index.js",
+      "start:db": "docker run --name movies -e POSTGRES_DB=movies -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=postgres -p 5432:5432 postgres:10.2-alpine",
       "migrate:latest": "knex --knexfile ./config/knexfile.js migrate:latest",
       "migrate:seed": "knex --knexfile ./config/knexfile.js seed:run"
     },
