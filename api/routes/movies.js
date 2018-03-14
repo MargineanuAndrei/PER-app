@@ -3,7 +3,7 @@ const router = express.Router();
 
 const knex = require('../db/knex');
 
-router.get('/', (req, res, next) => {
+router.get('/', (req, res) => {
   knex('movies')
     .select()
     .then(movies => {
