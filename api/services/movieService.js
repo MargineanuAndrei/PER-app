@@ -86,7 +86,55 @@ class MovieService {
         }
 
         // Insert new movie in db
-        await knex('movies').insert(data)
+        await knex('movies')
+          .insert(data);
+
+        return Either.Right();
+      }
+      return Either.Left(validationErr.value);
+    } catch (error) {
+      return Either.Left();
+    }
+  }
+
+  // Update movie function
+  static async updateMovie(id, data) {
+    try {
+
+      // Query to count movies with this id in db
+      const movie = await knex('movies')
+        .count()
+        .where('id', id)
+        .then( result => parseInt(result[0].count));
+
+      // Return error if movie not exists
+      if(movie == 0){
+        return Either.Left(MovieService.ERRORS.INVALID_ID);
+      }
+
+      // Validate data from body
+      const validationErr = await MovieService.validateMovie(data);
+
+      // Handle response from validation
+      if (validationErr.isRight()) {
+
+        // Check if movie with such title already exists
+        // Query to count all movies with this title in db
+        const movies = await knex('movies')
+          .count()
+          .where('title', data.title)
+          .then( result => parseInt(result[0].count));
+
+        // Verify if movie exist or not
+        if(movies){
+          return Either.Left(MovieService.ERRORS.ALREADY_EXIST);
+        }
+
+        // Update movie in db
+        await knex('movies')
+          .update(data)
+          .where('id',id);
+
         return Either.Right();
       }
       return Either.Left(validationErr.value);

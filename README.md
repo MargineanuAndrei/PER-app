@@ -21,6 +21,10 @@ Get a movie by id
 Method: GET  
 Path: localhost:3000/movies/:id  
 
+Remove movie  
+Method: DELETE   
+Path: localhost:3000/movies/:id   
+
 Create a new movie  
 Method: POST  
 Path: localhost:3000/movies/  
@@ -31,8 +35,21 @@ Body:
     "description":"Description example",
     "rating": 10
 }
-```  
-Validation rules:   
+```
+    
+Update movie  
+Method: PUT  
+Path: localhost:3000/movies/:id    
+Body:  
+```
+{
+    "title":"Title example",
+    "description":"Description example",
+    "rating": 10
+}
+```
+
+Request to create and update validation rules for body object:   
 * title: string with min length 2 and max length 50    
 * description: string with min length 2 and max length 150    
 * rating: positiv integer max value 10   
