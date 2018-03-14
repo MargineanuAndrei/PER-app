@@ -1,5 +1,5 @@
 Arguments: 
-  /home/andrew/.nvm/versions/node/v9.5.0/bin/node /usr/share/yarn/bin/yarn.js run migrate:latest
+  /home/andrew/.nvm/versions/node/v9.5.0/bin/node /usr/share/yarn/bin/yarn.js run start:db
 
 PATH: 
   /home/andrew/.nvm/versions/node/v9.5.0/bin:/home/andrew/bin:/home/andrew/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
@@ -28,8 +28,11 @@ npm manifest:
     "dependencies": {
       "body-parser": "^1.18.2",
       "express": "^4.16.3",
+      "http-status-codes": "^1.3.0",
       "knex": "^0.14.4",
-      "pg": "^7.4.1"
+      "monet": "^0.8.10",
+      "pg": "^7.4.1",
+      "ramda": "^0.25.0"
     },
     "devDependencies": {
       "nodemon": "^1.17.1"
@@ -970,6 +973,10 @@ Lockfile:
       jsprim "^1.2.2"
       sshpk "^1.7.0"
   
+  http-status-codes@^1.3.0:
+    version "1.3.0"
+    resolved "https://registry.yarnpkg.com/http-status-codes/-/http-status-codes-1.3.0.tgz#9cd0e71391773d0671b489d41cbc5094aa4163b6"
+  
   iconv-lite@0.4.19:
     version "0.4.19"
     resolved "https://registry.yarnpkg.com/iconv-lite/-/iconv-lite-0.4.19.tgz#f7468f60135f5e5dad3399c0a81be9a1603a082b"
@@ -1408,6 +1415,10 @@ Lockfile:
     dependencies:
       minimist "0.0.8"
   
+  monet@^0.8.10:
+    version "0.8.10"
+    resolved "https://registry.yarnpkg.com/monet/-/monet-0.8.10.tgz#af82af50591466f78baf97c053e2ffe5e9108224"
+  
   ms@2.0.0:
     version "2.0.0"
     resolved "https://registry.yarnpkg.com/ms/-/ms-2.0.0.tgz#5608aeadfc00be6c2901df5f9861788de0d597c8"
@@ -1770,6 +1781,10 @@ Lockfile:
   qs@~6.4.0:
     version "6.4.0"
     resolved "https://registry.yarnpkg.com/qs/-/qs-6.4.0.tgz#13e26d28ad6b0ffaa91312cd3bf708ed351e7233"
+  
+  ramda@^0.25.0:
+    version "0.25.0"
+    resolved "https://registry.yarnpkg.com/ramda/-/ramda-0.25.0.tgz#8fdf68231cffa90bc2f9460390a0cb74a29b29a9"
   
   range-parser@~1.2.0:
     version "1.2.0"
@@ -2426,9 +2441,9 @@ Lockfile:
 
 Trace: 
   Error: Command failed.
-  Exit code: 1
+  Exit code: 125
   Command: sh
-  Arguments: -c knex --knexfile ./config/knexfile.js migrate:latest
+  Arguments: -c docker run --name movies -e POSTGRES_DB=movies -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=postgres -p 5432:5432 postgres:10.2-alpine
   Directory: /home/andrew/Andrei/Proiecte/per/api
   Output:
   
