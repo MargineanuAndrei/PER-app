@@ -1,3 +1,5 @@
+
+// Movie seed file
 exports.seed = function(knex, Promise) {
   return knex('movies').del()
     .then(function () {

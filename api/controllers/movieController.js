@@ -6,6 +6,8 @@ const MovieResponses = require('../responses/movieResponses');
 const { errorResponse, okResponse } = require('../utils/response');
 
 class MovieController {
+
+  // Controler for get route '/'
   static async getAllMovies(req, res) {
     return (await MovieService.getAllMovies()).cata(
       error => errorResponse(res, MovieResponses.MOVIE_ERROR()),
@@ -13,6 +15,7 @@ class MovieController {
     );
   }
 
+  // Controler for get route '/:id'
   static async getOneMovie(req, res) {
     return (await MovieService.getOneMovie(req.params.id)).cata(
       error => errorResponse(res, R.cond([
@@ -29,6 +32,7 @@ class MovieController {
     );
   }
 
+  // Controler for delete route '/:id'
   static async removeMovie(req, res) {
     return (await MovieService.removeMovie(req.params.id)).cata(
       error => errorResponse(res, R.cond([
@@ -45,12 +49,17 @@ class MovieController {
     );
   }
 
+  // Controler for post route '/'
   static async createMovie(req, res) {
     return (await MovieService.createMovie(req.body)).cata(
       error => errorResponse(res, R.cond([
         [
           R.equals(MovieService.ERRORS.INVALID_MOVIE),
           R.always(MovieResponses.INVALID_MOVIE()),
+        ],
+        [
+          R.equals(MovieService.ERRORS.ALREADY_EXIST),
+          R.always(MovieResponses.ALREADY_EXIST()),
         ],
         [
           R.T,

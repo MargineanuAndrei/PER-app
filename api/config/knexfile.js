@@ -1,3 +1,5 @@
+
+// Knex configurations
 module.exports = {
   development: {
     client: 'postgresql',
