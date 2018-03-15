@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { BrowserRouter, Route} from "react-router-dom";
 
 import Header from './Header';
-import Home from './Home';
-import Movie from './Movie';
-import About from './About';
-import CreateMovie from './CreateMovie';
+import Home from './pages/Home';
+import Movie from './pages/Movie';
+import About from './pages/About';
+import CreateMovie from './operations/CreateMovie';
 
 class App extends Component {
   render() {
