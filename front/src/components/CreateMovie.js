@@ -30,7 +30,7 @@ class CreateMovie extends Component {
 
   render() {
     return (
-      <div className="container create-wraper">
+      <div className="container container-wraper">
         <form>
           <fieldset>
 

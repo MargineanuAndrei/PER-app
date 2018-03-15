@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
+import { Link } from "react-router-dom";
+
 class Home extends Component {
 
   constructor(props){
@@ -15,6 +17,9 @@ class Home extends Component {
       .then(response => {
         const movies = response.data.data;
         this.setState({ movies });
+      })
+      .catch((error) => {
+        console.log(error);
       });
   }
 
@@ -43,7 +48,7 @@ class Home extends Component {
                       </p>
                     </div>
                     <div className="card-footer text-muted button-wraper">
-                      <button type="button" className="btn btn-secondary costum-button">Details</button>
+                      <Link to={`/movie/${movie.id}`}  className="link-button"><button type="button" className="btn btn-secondary costum-button">Details</button></Link>
                     </div>
                   </div>
                 </div>

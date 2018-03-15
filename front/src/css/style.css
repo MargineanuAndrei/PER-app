@@ -12,8 +12,13 @@
   margin-top: 10px;
   text-align: center;
 }
+
 .costum-button{
-  width: 50%;
+  width: 100%;
+}
+
+.link-button{
+  width:50%;
 }
 
 .button-wraper{
@@ -21,7 +26,7 @@
   align-items: center;
   justify-content: center;
 }
-.create-wraper{
+.container-wraper{
   margin-top: 2%;
 }
 .about-wraper{
