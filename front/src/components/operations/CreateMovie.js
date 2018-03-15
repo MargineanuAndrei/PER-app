@@ -1,14 +1,18 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Redirect } from "react-router-dom";
 
 class CreateMovie extends Component {
 
   constructor(props) {
     super(props);
-    this.onClick = this.onClick.bind(this);
+    this.state = {
+      redirect: false
+    };
+    this.createMovie = this.createMovie.bind(this);
   }
 
-  onClick(){
+  createMovie(){
     axios({
       method: 'post',
       url: 'http://localhost:5000/movies',
@@ -22,13 +26,17 @@ class CreateMovie extends Component {
         'Content-Type': 'application/json',
       }
     })
-    .then(response => console.log(response))
+    .then(() => this.setState({ redirect: true }))
     .catch((error) => {
       console.log(error);
     });
   }
 
   render() {
+    const { redirect } = this.state;
+    if (redirect) {
+      return <Redirect to='/'/>;
+    }
     return (
       <div className="container container-wraper">
         <form>
@@ -62,7 +70,7 @@ class CreateMovie extends Component {
               <small id="descriptionTextarea" className="form-text text-muted">Min length 2 max length 150</small>
             </div>
           </fieldset>
-          <button type="button" className="btn btn-success" onClick={this.onClick}>Create</button>
+          <button type="button" className="btn btn-success" onClick={this.createMovie}>Create</button>
         </form>
       </div>
     );
