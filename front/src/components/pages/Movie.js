@@ -8,7 +8,9 @@ class Movie extends Component {
   constructor(props){
     super(props);
     this.state = {
-      movie: {},
+      title: '',
+      description: '',
+      rating: 1,
       id: this.props.match.params.id
     };
   }
@@ -16,8 +18,10 @@ class Movie extends Component {
   getOneMovie(){
     axios.get(`http://localhost:5000/movies/${this.state.id}`)
       .then(response => {
-        const movie = response.data.data[0];
-        this.setState({ movie });
+        const title = response.data.data[0].title;
+        const description = response.data.data[0].description;
+        const rating = response.data.data[0].rating;
+        this.setState({ title, description, rating });
       })
       .catch((error) => {
         console.log(error);
@@ -28,17 +32,41 @@ class Movie extends Component {
     this.getOneMovie();
   }
 
+  changeTitle(title){
+    this.setState({title});
+  }
+
+  changeDescription(description){
+    this.setState({description});
+  }
+
+  changeRating(rating){
+    this.setState({rating});
+  }
+
   render() {
-    const { movie, id} = this.state;
+    const { title, description, rating, id} = this.state;
     return (
       <div className="container container-wraper">
         <div className="col-lg-12">
           <div className="row">
             <div className="col-lg-6">
-              <DeleteMovie movie={movie} id={id}/>
+              <DeleteMovie 
+                title={title} 
+                description={description} 
+                rating={rating} 
+                id={id}/>
             </div>
             <div className="col-lg-6">
-              <UpdateMovie movie={movie} id={id}/>
+              <UpdateMovie 
+                changeTitle={this.changeTitle.bind(this)} 
+                changeDescription={this.changeDescription.bind(this)} 
+                changeRating={this.changeRating.bind(this)}
+                title={title} 
+                description={description} 
+                rating={rating} 
+                id={id}
+                />
             </div>
           </div>
         </div>
