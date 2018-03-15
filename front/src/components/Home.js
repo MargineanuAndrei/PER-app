@@ -3,18 +3,44 @@ import axios from 'axios';
 
 class Home extends Component {
 
-  conponetDidMount(){
+  constructor(props){
+    super(props);
+    this.state = {
+      movies: []
+    };
+  }
+
+  fetchMovies(){
     axios.get('http://localhost:5000/movies')
-      .then(response => console.log(response));
+      .then(response => {
+        const movies = response.data.data;
+        console.log(movies);
+        this.setState({ movies });
+      });
+  }
+
+  componentWillMount(){
+    this.fetchMovies();
   }
 
   render() {
     return (
       <div>
-        Home sweet home
+        <h2>Home sweet home</h2>
+
+        {
+            this.state.movies.map(movie => {
+              return(
+                <div key={movie.id}>
+                  <div>{movie.title}</div>
+                </div>
+              );
+            })
+        }
+
       </div>
     );
   }
 }
 
-export default Home;
+export default Home
