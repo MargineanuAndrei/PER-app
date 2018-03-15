@@ -3,13 +3,13 @@
 **Steps to run app:**
 1. you need to have `nodejs`, `yarn` and `docker` installed
 2. clone project on your local machine
-3. `cd PER-app` && `cd api` 
+3. `cd PER-app` && `cd api`
 4. in a terminal run command `yarn install`
 5. check if the ports 3000 and 5432 are empty on your localhost
 6. run command `yarn run start:db`
 7. open second terminal run command `yarn run migrate`
 8. after it's finished run command `yarn run seed`
-9. after it's finished run command `yarn run start`
+9. after it's finished run command `yarn start`
 
 **Api end poits:**
 
