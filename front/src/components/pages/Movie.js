@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Redirect } from "react-router-dom";
 
 import DeleteMovie from "../operations/DeleteMovie";
 import UpdateMovie from "../operations/UpdateMovie";
@@ -10,12 +9,11 @@ class Movie extends Component {
     super(props);
     this.state = {
       movie: {},
-      redirect: false,
       id: this.props.match.params.id
     };
   }
 
-  fetchOneMovie(){
+  getOneMovie(){
     axios.get(`http://localhost:5000/movies/${this.state.id}`)
       .then(response => {
         const movie = response.data.data[0];
@@ -27,15 +25,11 @@ class Movie extends Component {
   }
 
   componentWillMount(){
-    this.fetchOneMovie();
+    this.getOneMovie();
   }
 
   render() {
-    const { redirect, movie, id} = this.state;
-
-     if (redirect) {
-       return <Redirect to='/'/>;
-     }
+    const { movie, id} = this.state;
     return (
       <div className="container container-wraper">
         <div className="col-lg-12">
@@ -44,7 +38,7 @@ class Movie extends Component {
               <DeleteMovie movie={movie} id={id}/>
             </div>
             <div className="col-lg-6">
-              <UpdateMovie id={id}/>
+              <UpdateMovie movie={movie} id={id}/>
             </div>
           </div>
         </div>
