@@ -1,0 +1,22 @@
+.card-container{
+  padding: 0%;
+}
+
+.card-content{
+  margin: 2%;
+  height: 100%;
+}
+
+.my-header{
+  margin-top: 10px;
+  text-align: center;
+}
+.costum-button{
+  width: 50%;
+}
+
+.button-wraper{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
