@@ -66,7 +66,6 @@ class MovieService {
   // Create movie function
   static async createMovie(data) {
     try {
-      console.log(data);
       // Validate data from body
       const validationErr = await MovieService.validateMovie(data);
 

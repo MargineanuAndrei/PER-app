@@ -1,4 +1,4 @@
-# Postgresql Expressjs Reactjs CRUD application
+# Postgresql Expressjs Reactjs CRUD Application
 
 **Steps to run app:**
 1. you need to have `nodejs`, `yarn` and `docker` installed
