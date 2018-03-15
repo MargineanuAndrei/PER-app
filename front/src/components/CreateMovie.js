@@ -3,9 +3,29 @@ import axios from 'axios';
 
 class CreateMovie extends Component {
 
-  onSubmit(){
-    axios.post('http://localhost:5000/movies')
-      .then(response => console.log(response));
+  constructor(props) {
+    super(props);
+    this.onClick = this.onClick.bind(this);
+  }
+
+  onClick(){
+    axios({
+      method: 'post',
+      url: 'http://localhost:5000/movies',
+      data: {
+        title: this.refs.title.value,
+        description: this.refs.description.value,
+        rating: parseInt(this.refs.rating.value, 10)
+      },
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      }
+    })
+    .then(response => console.log(response))
+    .catch((error) => {
+      console.log(error);
+    });
   }
 
   render() {
@@ -15,14 +35,14 @@ class CreateMovie extends Component {
           <fieldset>
 
             <div className="form-group">
-            <label for="titleInput">Movie Title</label>
-            <input type="text" className="form-control" id="titleInput" aria-describedby="titleInput" placeholder="Enter title"></input>
+            <label htmlFor="titleInput">Movie Title</label>
+            <input ref="title" type="text" className="form-control" id="titleInput" aria-describedby="titleInput" placeholder="Enter title"></input>
             <small id="titleInput" className="form-text text-muted">Min length 2 max length 50</small>
             </div>
 
             <div className="form-group">
-              <label for="ratingSelect">Select Movie Rating</label>
-              <select className="form-control" id="ratingSelect">
+              <label htmlFor="ratingSelect">Select Movie Rating</label>
+              <select ref="rating" className="form-control" id="ratingSelect">
                 <option>1</option>
                 <option>2</option>
                 <option>3</option>
@@ -37,12 +57,12 @@ class CreateMovie extends Component {
             </div>
 
             <div className="form-group">
-              <label for="descriptionTextarea">Movie Description</label>
-              <textarea className="form-control" id="descriptionTextarea" aria-describedby="descriptionTextarea" rows="3"></textarea>
+              <label htmlFor="descriptionTextarea">Movie Description</label>
+              <textarea ref="description" className="form-control" id="descriptionTextarea" aria-describedby="descriptionTextarea" rows="3"></textarea>
               <small id="descriptionTextarea" className="form-text text-muted">Min length 2 max length 150</small>
             </div>
           </fieldset>
-          <button type="submit" class="btn btn-primary">Submit</button>
+          <button type="button" className="btn btn-success" onClick={this.onClick}>Create</button>
         </form>
       </div>
     );
