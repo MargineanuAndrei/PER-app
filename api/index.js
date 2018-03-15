@@ -11,4 +11,4 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // Movies routes
 app.use('/movies', movieRoute);
 
-app.listen(3000, () => console.log('Api is listening on port 3000'));
+app.listen(5000, () => console.log('Api is listening on port 5000'));
