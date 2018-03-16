@@ -10,28 +10,44 @@ class UpdateMovie extends Component {
       redirect: false
     };
     this.updateMovie = this.updateMovie.bind(this);
+    this.validateData = this.validateData.bind(this);
+  }
+
+  // Very simple validation function
+  validateData(){
+    if(this.refs.title.value.length < 2 || this.refs.title.value.length > 50){
+      alert('Title field is invalid!');
+      return false;
+    }
+    if(this.refs.description.value.length < 2 || this.refs.description.value.length > 300){
+      alert('Description field is invalid!');
+      return false;
+    }
+    return true;
   }
 
   // axis request to api to update a movie
   updateMovie(){
-    const {id} = this.props;
-    axios({
-      method: 'put',
-      url: `http://localhost:5000/movies/${id}`,
-      data: {
-        title: this.refs.title.value,
-        description: this.refs.description.value,
-        rating: parseInt(this.refs.rating.value, 10)
-      },
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      }
-    })
-    .then(() => this.setState({ redirect: true }))
-    .catch((error) => {
-      console.log(error);
-    });
+    if(this.validateData()){
+      const {id} = this.props;
+      axios({
+        method: 'put',
+        url: `http://localhost:5000/movies/${id}`,
+        data: {
+          title: this.refs.title.value,
+          description: this.refs.description.value,
+          rating: parseInt(this.refs.rating.value, 10)
+        },
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        }
+      })
+      .then(() => this.setState({ redirect: true }))
+      .catch((error) => {
+        console.log(error);
+      });
+    }
   }
 
   handleTitleChange (e) {
