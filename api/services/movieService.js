@@ -116,7 +116,7 @@ class MovieService {
 
         // Check if movie with such title already exists
         allMovies.forEach((mov) => {
-          if (id !== mov.id && data.title === mov.title) {
+          if (parseInt(id, 10) !== mov.id && data.title === mov.title) {
             titleAlreadyExists = true;
           }
         });
