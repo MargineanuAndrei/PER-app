@@ -29,16 +29,16 @@ class DeleteMovie extends Component {
 
   render() {
     const { redirect } = this.state;
-    const { title, description, rating } = this.props;
+    const { movie } = this.props;
 
      if (redirect) {
        return <Redirect to='/'/>;
      }
     return (
       <div>
-        <h3 className="display-5">{title}</h3>
-        <p>Movie Rating: {rating}</p>
-        <p>Description: {description}</p>
+        <h3 className="display-5">{movie.title}</h3>
+        <p>Movie Rating: {movie.rating}</p>
+        <p>Description: {movie.description}</p>
         <button type="button" className="btn btn-danger" onClick={this.deleteMovie}>Delete</button>
       </div>
     );
