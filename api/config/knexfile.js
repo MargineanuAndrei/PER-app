@@ -5,10 +5,10 @@ module.exports = {
     client: 'postgresql',
     debug: true,
     connection: {
-      host:     'localhost',
+      host: 'localhost',
       database: 'movies',
-      user:     'postgres',
-      password: 'postgres'
-    }
-  }
+      user: 'postgres',
+      password: 'postgres',
+    },
+  },
 };

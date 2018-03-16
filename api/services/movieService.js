@@ -4,11 +4,9 @@ const Joi = require('joi');
 const knex = require('../db/knex');
 
 class MovieService {
-
   // Get all movie
   static async getAllMovies() {
     try {
-
       // Query to get all movies from db
       const movies = await knex('movies').select();
 
@@ -21,14 +19,13 @@ class MovieService {
   // Get movie by id function
   static async getOneMovie(id) {
     try {
-
       // Query to check if movie exists in db
       const movie = await knex('movies')
         .select()
         .where('id', id);
 
       // Check result of query
-      if(movie.length == 0){
+      if (movie.length === 0) {
         return Either.Left(MovieService.ERRORS.INVALID_ID);
       }
 
@@ -41,14 +38,13 @@ class MovieService {
   // Remove movie function
   static async removeMovie(id) {
     try {
-
       // Query to check if movie exists in db
       const movie = await knex('movies')
         .select()
         .where('id', id);
 
       // Check result of query
-      if(movie.length == 0){
+      if (movie.length === 0) {
         return Either.Left(MovieService.ERRORS.INVALID_ID);
       }
 
@@ -71,16 +67,15 @@ class MovieService {
 
       // Handle response from validation
       if (validationErr.isRight()) {
-
         // Check if movie with such title already exists
         // Query to count all movies with this title in db
         const movies = await knex('movies')
           .count()
           .where('title', data.title)
-          .then( result => parseInt(result[0].count));
+          .then(result => parseInt(result[0].count, 10));
 
         // Verify if movie with such title already exist
-        if(movies){
+        if (movies) {
           return Either.Left(MovieService.ERRORS.ALREADY_EXIST);
         }
 
@@ -99,15 +94,14 @@ class MovieService {
   // Update movie function
   static async updateMovie(id, data) {
     try {
-
       // Query to count movies with this id in db
       const movie = await knex('movies')
         .count()
         .where('id', id)
-        .then( result => parseInt(result[0].count));
+        .then(result => parseInt(result[0].count, 10));
 
       // Return error if movie not exists
-      if(movie == 0){
+      if (movie === 0) {
         return Either.Left(MovieService.ERRORS.INVALID_ID);
       }
 
@@ -116,27 +110,26 @@ class MovieService {
 
       // Handle response from validation
       if (validationErr.isRight()) {
-
         // Get all movies from data base
         const allMovies = await knex('movies').select();
         let titleAlreadyExists = false;
 
         // Check if movie with such title already exists
-        allMovies.forEach((movie) => {
-          if(id != movie.id && data.title == movie.title){
+        allMovies.forEach((mov) => {
+          if (id !== mov.id && data.title === mov.title) {
             titleAlreadyExists = true;
           }
         });
 
         // Verify if movie with such title already exists
-        if(titleAlreadyExists){
+        if (titleAlreadyExists) {
           return Either.Left(MovieService.ERRORS.ALREADY_EXIST);
         }
 
         // Update movie in db
         await knex('movies')
           .update(data)
-          .where('id',id);
+          .where('id', id);
 
         return Either.Right();
       }
@@ -153,13 +146,13 @@ class MovieService {
       const movieSchema = Joi.object({
         title: Joi.string().min(2).max(50).required(),
         description: Joi.string().min(2).max(300).required(),
-        rating: Joi.number().integer().positive().max(10).required()
+        rating: Joi.number().integer().positive().max(10).required(),
       });
 
       // Valitate entry data
       const validation = Joi.validate(data, movieSchema, {
         allowUnknown: false,
-        abortEarly: false
+        abortEarly: false,
       });
 
       // Check for errors
@@ -176,7 +169,7 @@ class MovieService {
 MovieService.ERRORS = {
   ALREADY_EXIST: 'ALREADY_EXIST',
   INVALID_ID: 'INVALID_ID',
-  INVALID_MOVIE: 'INVALID_MOVIE'
+  INVALID_MOVIE: 'INVALID_MOVIE',
 };
 
 

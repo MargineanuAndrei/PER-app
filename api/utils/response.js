@@ -5,5 +5,5 @@ const okResponse = (res, data, { code, message }) => res.status(code).json({ cod
 
 module.exports = {
   errorResponse,
-  okResponse
-}
+  okResponse,
+};

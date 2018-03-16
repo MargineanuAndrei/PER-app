@@ -6,11 +6,10 @@ const MovieResponses = require('../responses/movieResponses');
 const { errorResponse, okResponse } = require('../utils/response');
 
 class MovieController {
-
   // Controler for get all movies route (get '/')
   static async getAllMovies(req, res) {
     return (await MovieService.getAllMovies()).cata(
-      error => errorResponse(res, MovieResponses.MOVIE_ERROR()),
+      () => errorResponse(res, MovieResponses.MOVIE_ERROR()),
       result => okResponse(res, result, MovieResponses.MOVIE_SUCCESS()),
     );
   }
@@ -26,7 +25,7 @@ class MovieController {
         [
           R.T,
           R.always(MovieResponses.MOVIE_ERROR()),
-        ]
+        ],
       ])(error)),
       result => okResponse(res, result, MovieResponses.MOVIE_SUCCESS()),
     );
@@ -43,9 +42,9 @@ class MovieController {
         [
           R.T,
           R.always(MovieResponses.MOVIE_ERROR()),
-        ]
+        ],
       ])(error)),
-      result => okResponse(res, undefined, MovieResponses.MOVIE_DELLETED()),
+      () => okResponse(res, undefined, MovieResponses.MOVIE_DELLETED()),
     );
   }
 
@@ -64,9 +63,9 @@ class MovieController {
         [
           R.T,
           R.always(MovieResponses.MOVIE_ERROR()),
-        ]
+        ],
       ])(error)),
-      result => okResponse(res, undefined, MovieResponses.MOVIE_CREATED()),
+      () => okResponse(res, undefined, MovieResponses.MOVIE_CREATED()),
     );
   }
 
@@ -89,9 +88,9 @@ class MovieController {
         [
           R.T,
           R.always(MovieResponses.MOVIE_ERROR()),
-        ]
+        ],
       ])(error)),
-      result => okResponse(res, undefined, MovieResponses.MOVIE_UPDATED()),
+      () => okResponse(res, undefined, MovieResponses.MOVIE_UPDATED()),
     );
   }
 }
