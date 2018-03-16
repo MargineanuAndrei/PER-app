@@ -1,3 +1,4 @@
+// Get all movies component
 import React, { Component } from 'react';
 import axios from 'axios';
 
@@ -12,6 +13,7 @@ class GetAllMovies extends Component {
     };
   }
 
+  // axis request to api to get all movies
   getAllMovies(){
     axios.get('http://localhost:5000/movies')
       .then(response => {
@@ -48,7 +50,7 @@ class GetAllMovies extends Component {
                       </p>
                     </div>
                     <div className="card-footer text-muted button-wraper">
-                      <Link to={`/movie/${movie.id}`}  className="link-button"><button type="button" className="btn btn-secondary costum-button">Details</button></Link>
+                      <Link to={`/movie/${movie.id}`}  className="link-button"><button type="button" className="btn btn-secondary custom-button">Details</button></Link>
                     </div>
                   </div>
                 </div>

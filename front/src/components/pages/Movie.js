@@ -1,3 +1,4 @@
+// Component to display one movie data
 import React, { Component } from 'react';
 import axios from 'axios';
 
@@ -15,7 +16,7 @@ class Movie extends Component {
       id: this.props.match.params.id
     };
   }
-
+  // axis request to api to get one movie
   getOneMovie(){
     axios.get(`http://localhost:5000/movies/${this.state.id}`)
       .then(response => {

@@ -1,3 +1,4 @@
+// Home page component
 import React, { Component } from 'react';
 
 import GetAllMovies from "../operations/GetAllMovies";

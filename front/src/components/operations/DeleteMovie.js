@@ -1,3 +1,4 @@
+// Delete movie component
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Redirect } from "react-router-dom";
@@ -11,6 +12,7 @@ class DeleteMovie extends Component {
     this.deleteMovie = this.deleteMovie.bind(this);
   }
 
+  // axis request to api to delete a movie
   deleteMovie(){
     const id = this.props.id;
     axios({

@@ -1,3 +1,4 @@
+// Entry point to front-end
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/App';

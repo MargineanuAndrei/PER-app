@@ -1,11 +1,11 @@
 # Postgresql Expressjs Reactjs CRUD Application
 
 **Steps to run app:**
-1. you need to have `nodejs`, `yarn` and `docker` installed
-2. clone project on your local machine
-3. `cd PER-app/api`
-4. in a terminal run command `yarn install`
-5. check if the ports 3000, 5000 and 5432 are empty on your localhost
+1. you need to have `nodejs`, `yarn` and `docker` installed on your local machine be be able to run project
+2. check if the ports 3000, 5000 and 5432 are empty on your localhost
+3. clone project on your local machine
+4. `cd PER-app/api`
+5. in a terminal run command `yarn install`
 6. run command `yarn start:db`
 7. open second terminal run command `yarn migrate`
 8. after it's finished run command `yarn seed`

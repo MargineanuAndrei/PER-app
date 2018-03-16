@@ -1,3 +1,4 @@
+// Create movie component
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Redirect } from "react-router-dom";
@@ -12,6 +13,7 @@ class CreateMovie extends Component {
     this.createMovie = this.createMovie.bind(this);
   }
 
+  // axis request to api to create a movie
   createMovie(){
     axios({
       method: 'post',

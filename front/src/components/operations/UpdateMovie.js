@@ -1,3 +1,4 @@
+// Update movie component
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Redirect } from "react-router-dom";
@@ -11,6 +12,7 @@ class UpdateMovie extends Component {
     this.updateMovie = this.updateMovie.bind(this);
   }
 
+  // axis request to api to update a movie
   updateMovie(){
     const {id} = this.props;
     axios({

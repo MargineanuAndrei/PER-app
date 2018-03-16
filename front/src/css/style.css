@@ -1,3 +1,4 @@
+/* Custom css styles for project */
 .card-container{
   padding: 0%;
   margin-bottom: 2%;
@@ -13,7 +14,7 @@
   text-align: center;
 }
 
-.costum-button{
+.custom-button{
   width: 100%;
 }
 

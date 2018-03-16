@@ -1,3 +1,4 @@
+// Main app component
 import React, { Component } from 'react';
 import { BrowserRouter, Route} from "react-router-dom";
 
