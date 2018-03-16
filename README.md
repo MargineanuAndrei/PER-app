@@ -54,7 +54,7 @@ Body:
 
 Request to create and update validation rules for body object:   
 * title: string with min length 2 and max length 50    
-* description: string with min length 2 and max length 150    
+* description: string with min length 2 and max length 300    
 * rating: positive integer max value 10   
 
 **Front-end routes:**  

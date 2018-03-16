@@ -79,7 +79,7 @@ class MovieService {
           .where('title', data.title)
           .then( result => parseInt(result[0].count));
 
-        // Verify if movie exist or not
+        // Verify if movie with such title already exist
         if(movies){
           return Either.Left(MovieService.ERRORS.ALREADY_EXIST);
         }
@@ -117,15 +117,19 @@ class MovieService {
       // Handle response from validation
       if (validationErr.isRight()) {
 
-        // Check if movie with such title already exists
-        // Query to count all movies with this title in db
-        const movies = await knex('movies')
-          .count()
-          .where('title', data.title)
-          .then( result => parseInt(result[0].count));
+        // Get all movies from data base
+        const allMovies = await knex('movies').select();
+        let titleAlreadyExists = false;
 
-        // Verify if movie exist or not
-        if(movies){
+        // Check if movie with such title already exists
+        allMovies.forEach((movie) => {
+          if(id != movie.id && data.title == movie.title){
+            titleAlreadyExists = true;
+          }
+        });
+
+        // Verify if movie with such title already exists
+        if(titleAlreadyExists){
           return Either.Left(MovieService.ERRORS.ALREADY_EXIST);
         }
 
