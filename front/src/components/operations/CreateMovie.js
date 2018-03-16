@@ -67,7 +67,7 @@ class CreateMovie extends Component {
             <div className="form-group">
               <label htmlFor="descriptionTextarea">Movie Description</label>
               <textarea ref="description" className="form-control" id="descriptionTextarea" aria-describedby="descriptionTextarea" rows="3"></textarea>
-              <small id="descriptionTextarea" className="form-text text-muted">Min length 2 max length 150</small>
+              <small id="descriptionTextarea" className="form-text text-muted">Min length 2 max length 300</small>
             </div>
           </fieldset>
           <button type="button" className="btn btn-success" onClick={this.createMovie}>Create</button>

@@ -148,7 +148,7 @@ class MovieService {
       // Validation rules for data to create a movie
       const movieSchema = Joi.object({
         title: Joi.string().min(2).max(50).required(),
-        description: Joi.string().min(2).max(150).required(),
+        description: Joi.string().min(2).max(300).required(),
         rating: Joi.number().integer().positive().max(10).required()
       });
 
